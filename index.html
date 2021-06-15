@@ -1,0 +1,125 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    </head>
+    <body>        
+        <h1>Una página de prueba v5.3</h1>
+	    
+<!------------------------------------------>
+
+<style type='text/css'>
+	.embeddedServiceHelpButton .helpButton .uiButton {
+		background-color: #388403;
+		font-family: "Trebuchet MS", sans-serif;
+	}
+	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+		outline: 1px solid #388403;
+	}
+</style>
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = false;
+		embedded_svc.settings.language = 'es-CL'; //Por ejemplo, ingrese 'en' o 'en-US'
+		embedded_svc.settings.prechatBackgroundImgURL = "https://raw.githubusercontent.com/BernardoLiraBlueClip/hdi-cc/main/head.png?raw=true";
+		embedded_svc.settings.smallCompanyLogoImgURL = "https://raw.githubusercontent.com/BernardoLiraBlueClip/hdi-cc/main/boton-invitacion-chat.png?raw=true";
+
+		embedded_svc.settings.defaultMinimizedText = ''; //(Toma como valor predeterminado Sesión de chat con un experto)
+		embedded_svc.settings.disabledMinimizedText = 'El chat no está funcionando'; //(Toma como valor predeterminado Agente sin conexión)
+
+		embedded_svc.settings.loadingText = 'Empezando...'; //(Toma como valor predeterminado Cargando)
+		//embedded_svc.settings.storageDomain = '*'; //(Establece el dominio para su desarrollo de modo que los visitantes puedan navegar por subdominios durante una sesión de chat)
+
+		// Configuración para Plática
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Establece el relleno automático de los campos del formulario previo al chat
+		//embedded_svc.settings.fallbackRouting = []; //Una matriz de identificadores de botones, de usuario o userId_buttonId
+		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Toma como valor predeterminado la opción Contacto)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.waitingStateBackgroundImgURL = "";
+		embedded_svc.init(
+			'https://hdiseguros1--chatcenter.my.salesforce.com',
+			'https://chatcenter-01.cs21.force.com/CC',
+			gslbBaseURL,
+			'00Dq0000000Efxe',
+			'Chat_Agents',
+			{
+				baseLiveAgentContentURL: 'https://c.la4-c1cs-phx.salesforceliveagent.com/content',
+				deploymentId: '572q00000004E03',
+				buttonId: '573q00000004EoC',
+				baseLiveAgentURL: 'https://d.la4-c1cs-phx.salesforceliveagent.com/chat',
+				eswLiveAgentDevName: 'Chat_Agents',
+				isOfflineSupportEnabled: true
+			}
+		);
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', 'https://hdiseguros1--chatcenter.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW('https://service.force.com');
+	}
+</script>
+
+	    
+<!-- new -->
+<script type='text/javascript'>
+	function bootstrapChat() {
+		embedded_svc.bootstrapEmbeddedService();
+	}
+</script>
+	    <!--
+<button onclick="bootstrapChat()">
+	Click me to show the Embedded Chat experience.
+</button>	-->
+	    
+<!-- newer -->
+<script type="text/javascript" src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js'></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+var $myPanel = $("#live-chat");
+
+var $myPanelHeight = parseInt($myPanel.height());
+
+// Immediately set the opacity to 0 - to hide it and set its bottom to minus its height.
+$myPanel.css({ "opacity" : 0, "bottom" : "-" + $myPanelHeight + "px" });
+
+setTimeout(function() {
+
+$myPanel.animate({
+
+    opacity: 1,
+    bottom: '0'
+
+  }, 2000, function() {
+
+    // Animation complete. 
+    // You can put other code here to do something after it has slid-in.
+
+  });
+
+}, 30000); // 30 seconds in MS
+
+
+}); 
+</script>
+
+<div id="live-chat" style="position: absolute; bottom: 0px; right:100px; z-index:5; cursor: pointer; ">
+ <a onclick="bootstrapChat()"><img src="https://github.com/BernardoLiraBlueClip/hdi-cc/blob/main/boton-invitacion-chat.png?raw=true"></a>
+</div>
+
+    </body>
+</html>

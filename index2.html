@@ -75,5 +75,8 @@
 	    cuerpo = document.getElementById('bod');
 	    elementos = document.querySelectorAll('#bod button');
 	    
+	elementos.forEach((button) => {
+		button.addEventListener('click', console.log('hola'));
+	});
 	    
 	    </script>
